@@ -22,7 +22,58 @@ public class App {
     * el mensaje: "Ocurrió un error inesperado".
     */
 
+   public static String Escribir_asc(int n1, int n2, int n3){
 
+      try {
+       
+         String resultado = "";
+         int nMax = 0, nMin = 0, nMedio = 0; 
+
+         if(n1 == n2 || n2 == n3 || n3 == n1)
+            return "Error: La función no considera números iguales";
+         
+
+         if (n1 > n2 && n1 > n3) {
+            nMax = n1;
+            if (n2 > n3) {
+                nMedio = n2;
+                nMin = n3;
+            } else {
+                nMedio = n3;
+                nMin = n2;
+            }
+         } 
+         else if (n2 > n1 && n2 > n3) {
+            nMax = n2;
+            if (n1 > n3) {
+                nMedio = n1;
+                nMin = n3;
+            } else {
+                nMedio = n3;
+                nMin = n1;
+            }
+         } 
+         else {
+            nMax = n3;
+            if (n1 > n2) {
+                nMedio = n1;
+                nMin = n2;
+            } else {
+                nMedio = n2;
+                nMin = n1;
+            }
+        }
+
+        resultado = nMax + " - " + nMedio + " - " + nMin;
+        return resultado;
+
+      } 
+      
+      catch (Exception e) {
+         return "Ocurrió un error inesperado \n"  + e;
+      }
+
+   }
 
    /*
     * 2. Construya un algoritmo e implemente la función en Java Obtener_cifras que
@@ -33,7 +84,36 @@ public class App {
     * 
     */
 
+   public static byte Obtener_cifras(int num){
 
+      try {
+       
+         byte resultado = 0;
+         final int min = 0, k_diez = 10, k_cien = 100, k_mil = 1000, k_diezmil = 10000, max = 50000;
+
+         if(num < min || num > max)
+            return 0; 
+
+         if(num < k_diez)
+            resultado = 1;
+         else if(num < k_cien)
+            resultado = 2;
+         else if(num < k_mil)
+            resultado = 3;
+         else if(num < k_diezmil)
+            resultado = 4;
+         else
+            resultado = 5;
+
+         return resultado;
+
+      } 
+      
+      catch (Exception e) {
+         return -1;
+      }
+
+   }
 
    /*
     * 3. Construya un algoritmo e implemente la función en Java Clasificar_char que
@@ -49,7 +129,27 @@ public class App {
     * 
     */
 
+   public static String Clasificar_char(char var){
 
+      try {
+         
+         final char letra_A = 'A', letra_Z = 'Z', letra_a = 'a', letra_z = 'z'
+         , num_cero = '0', num_nueve = '9';
+
+         if((var >= letra_A && var <= letra_Z) || (var >= letra_a && var <= letra_z))
+            return "ES LETRA";
+         else if((var >= num_cero && var <= num_nueve))
+            return "ES NUMERO";
+         else
+            return "ESPECIAL";
+
+      } 
+      
+      catch (Exception e) {
+         return "Ocurrió un error inesperado \n" + e;
+      }
+
+   }
 
    /*
     * 
@@ -70,7 +170,33 @@ public class App {
     * 
     */
 
-   
+   public static String Hallar_division_exacta(int var1, int var2){
+
+      try {
+         
+         final byte k_cero = 0;
+         String resultado = "";
+         int residuo = 0;
+
+         if(var1 <= k_cero || var2 <= k_cero)
+            return "NO SE ADMITE CERO O NEGATIVOS";
+
+         residuo = var1 % var2;
+
+         if(residuo != k_cero)
+            resultado = "DIVISION NO EXACTA";
+         else
+            resultado = "DIVISION EXACTA";
+
+         return resultado;
+
+      } 
+      
+      catch (Exception e) {
+         return "Ocurrió un error inesperado";
+      }
+
+   }
 
    /*
     * 5. En la siguiente tabla se encuentra la información de las habitaciones de
@@ -97,7 +223,46 @@ public class App {
     * "Ocurrió un error inesperado".
     */
 
+   public static String Consultar_hab(byte nro_camas, String clase){
 
+      try {
+         
+         final byte min_camas = 1, max_camas = 3;
+         String resultado = "";
+
+         if(nro_camas < min_camas || nro_camas > max_camas || (!clase.equals("AA") && !clase.equals("VE")))
+            return "DATOS NO VÁLIDOS";
+
+         switch (nro_camas) {
+            case 1:
+               if(clase.equals("VE"))
+                  resultado = "102";
+               break;
+            case 2:
+               switch (clase) {
+                  case "AA":
+                     resultado = "101|301";
+                     break;
+                  case "VE":
+                     resultado = "202";
+                     break;
+                  }
+               break;
+            case 3:
+               if(clase.equals("AA"))
+                  resultado = "201";
+               break;
+         }
+
+         return resultado;
+
+      } 
+      
+      catch (Exception e) {
+         return "Ocurrió un error inesperado";
+      }
+
+   }
    
    /*
     * 
@@ -114,11 +279,30 @@ public class App {
     * "Ocurrió un error inesperado".
     */
 
+   public static String Obtener_obs(boolean p1, boolean p2, boolean p3){
 
+      try {
 
+         String msg_final = "";
 
+         if(p1 == true && p2 == false && p3 == false)
+            msg_final = "POSTRE";
+         else if(p1 == true && p2 == true && p3 == false)
+            msg_final = "BEBIDA";
+         else if(p1 == true && p2 == true && p3 == true)
+            msg_final = "BEBIDA Y POSTRE";
+         else
+            msg_final = "PLATOS NO VÁLIDOS";
 
+         return msg_final;
+         
+      } 
+      
+      catch (Exception e) {
+         return "Ocurrió un error inesperado";
+      }
 
+   }
 
    /*
     * 7. Un grupo de amigos hace un sorteo semanalmente con pelotas de ping pong,
@@ -141,4 +325,45 @@ public class App {
     * "Ocurrió un error inesperado".
     * 
     */
+   
+   public static String Conocer_invitacion(String color){
 
+      try {
+       
+         String msg_final = "";
+
+         switch (color) {
+            case "verde":
+               msg_final = "Invita a las cervezas";
+               break;
+            case "azul":
+               msg_final = "Invita a la pizza";
+               break;
+            case "rojo":
+               msg_final = "Invita al postre";
+               break;
+            case "amarillo":
+               msg_final = "Paga el parqueadero de todos";
+               break;
+            case "blanco":
+               msg_final = "Vaya y disfrute";
+               break;
+            case "negro":
+               msg_final = "Vaya y disfrute";
+               break;
+            default:
+               msg_final = "Error en el color";
+               break;
+         }
+
+         return msg_final;
+
+      } 
+      
+      catch (Exception e) {
+         return "Ocurrió un error inesperado";
+      }
+
+   }
+
+}
